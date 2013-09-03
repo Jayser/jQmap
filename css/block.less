@@ -1,0 +1,136 @@
+/*
+ * jQmap
+ */
+.jQmap-showcase,
+.jQmap-button,
+.jQmap,
+.jQmap-edit{
+	color: #999;
+	border: 1px solid #ccc;
+	background: #fff;
+	box-shadow: 0 0 5px #ccc;	
+	.rounded( 10px );
+}
+
+.jQmap-showcase{
+	margin: auto;
+	position: relative;
+	.size(400px,400px);
+}
+
+	.jQmap-thumb{
+		border: 1px solid #fff;
+		margin: 10px;
+		&.active{
+			border: 1px solid #FF5C00;
+		}
+	}
+
+	.jQmap{
+		position: absolute;
+		opacity: 0.5;
+		.transition( opacity 0.5s ease);
+		&:hover{
+			opacity: 1;
+			.jQmap-edit{
+				display: block;
+			}
+		}
+	}
+		.jQmap-edit{
+			float: right;
+			padding: 6px 5px 4px 5px; 
+			cursor: pointer;
+			margin: -8px -8px 0 0;
+			display: none;
+			.size(20px,20px);
+			.rounded(200px);
+		}
+
+/*
+ * Button
+ */
+.jQmap-tools{
+	margin: auto;
+	width: 400px;
+}
+
+	.jQmap-button{
+		cursor: pointer;
+		font-size: 11px;
+		padding: 10px;
+		margin: 0 10px 10px 0;
+		text-align: center;
+		vertical-align: top;
+		.inline-block();
+
+		&.active,
+		&:active,
+		&:hover{
+			color: #FF5C00;
+		}
+		&:active{
+			.opacity(.7);
+			box-shadow: 0 0 3px #666 inset;
+		}
+	}
+		.jQmap-icon{
+			margin-bottom: 2px;
+			.size(25px,25px);
+			.inline-block();
+		}
+	
+/*
+ * icon
+ */
+
+.jQmap-icon-plus{
+	background: url(../img/jQmap.png) no-repeat 0 0;
+}
+
+.jQmap-icon-rectangle{
+	background: url(../img/jQmap.png) no-repeat 0 -25px;
+}
+
+.jQmap-icon-html{
+	background: url(../img/jQmap.png) no-repeat 0 -97px;
+}
+
+.jQmap-icon-save{
+	background: url(../img/jQmap.png) no-repeat 0 -147px;
+}
+
+.jQmap-icon-edit{
+	background: url(../img/jQmap.png) no-repeat 0 -173px;
+	
+}
+
+.jQmap-edit{
+	&:active{
+		.opacity(.7);
+		box-shadow: 0 0 3px #666 inset;
+	}
+	&:hover  .jQmap-icon-edit,
+	&.active .jQmap-icon-edit{
+		background-position: -26px -173px;
+	}
+}
+
+.jQmap-button{
+	&:hover  .jQmap-icon-plus,
+	&.active .jQmap-icon-plus{
+		background-position: -25px 0;
+	}
+	&:hover  .jQmap-icon-html,
+	&.active .jQmap-icon-html{
+		background-position: -26px -97px;
+	}
+	&:hover  .jQmap-icon-rectangle,
+	&.active .jQmap-icon-rectangle{
+		background-position: -25px -25px;
+	}
+	&:hover  .jQmap-icon-save,
+	&.active .jQmap-icon-save{
+		background-position: -25px -147px;
+	}
+}

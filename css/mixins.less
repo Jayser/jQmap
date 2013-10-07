@@ -31,11 +31,6 @@
   *display: inline; 
   *zoom: 1;
 }
-.center-block() {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 .box-sizing(@boxmodel) {
   -webkit-box-sizing: @boxmodel;
   -moz-box-sizing: @boxmodel;
@@ -162,51 +157,4 @@
 // RESET FILTER FOR IE
 .reset-filter() {
   filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
-}
-
-// Debug
-.d_x1{
-  outline: 1px solid red;
-}
-.d_x2{
-  outline: 1px solid red;
-  > * {
-    outline: 1px solid red;
-  }
-}
-.d_x3{
-  outline: 1px solid red;
-  > * {
-    outline: 1px solid red;
-    > * {
-      outline: 1px solid red;
-    }
-  }
-}
-.d_x4{
-  outline: 1px solid red;
-  > * {
-    outline: 1px solid red;
-    > * {
-      outline: 1px solid red;
-      > * {
-        outline: 1px solid red;
-      }
-    }
-  }
-}
-.d_x5{
-  outline: 1px solid red;
-  > * {
-    outline: 1px solid red;
-    > * {
-      outline: 1px solid red;
-      > * {
-        outline: 1px solid red;
-        > * {
-          outline: 1px solid red;
-        }
-      }
-    }
-  }
 }

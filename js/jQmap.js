@@ -107,7 +107,7 @@
 				jQpup +=		'<div class="jQpup-close '+ close +'">X</div>';
 				jQpup +=		'<div class="b-form-style area">';
 				jQpup +=			'<div class="offset-bottom_10">';
-				jQpup +=				'<input type="text" id="popup-URL" placeholder="Введите URL" class="'+ formaStyle +' forma-el-width_2">';
+				jQpup +=				'<input type="text" id="popup-URL" autofocus placeholder="Введите URL" class="'+ formaStyle +' forma-el-width_2">';
 				jQpup +=				'<div class="forma-example offset-top_3 offset-left_5">Пример: http://your-site-url.com</div>';
 				jQpup +=			'</div>';
 				jQpup +=			'<div class="offset-bottom_15 offset-left_5">';
@@ -124,7 +124,7 @@
 				jQpup +=		'</div>';
 				jQpup +=		'<div class="b-form-style to-html">';
 				jQpup +=			'<div class="offset-bottom_15">';
-				jQpup +=				'<textarea id="popup-to_html" class="'+ formaStyle +'"></textarea>';
+				jQpup +=				'<textarea id="popup-to_html" autofocus class="'+ formaStyle +'"></textarea>';
 				jQpup +=			'</div>';
 				jQpup +=			'<div class="text-right">';
 				jQpup +=				'<button class="popup-cancel '+ button +' silver small '+ close +'">Отмена</button>';
@@ -520,6 +520,20 @@
 			// Show form generate HTML 
 			jQmap.$formaHTML.show();
 
+			// Select text in textarea
+			jQmap.$formaToHTML.focus(function(){
+
+				var $this = $(this);
+    			$this.select();
+
+				$this.mouseup(function() {
+			        // Prevent further mouseup intervention
+			        $this.unbind("mouseup");
+			        return false;
+			    });
+
+			});
+
 			// Generate HTML
 			for ( i; i < ln; i++ ){
 				if( !!cord[i] ){
@@ -535,7 +549,7 @@
 				}
 			}
 
-			jQmap.$formaToHTML.val( '<img src="" alt="" usemap="#'+mapID+'"><map id="'+mapID+'">'+area+'</map>' ); 
+			jQmap.$formaToHTML.val( '<img src="" alt="" usemap="#'+mapID+'"><map name="'+mapID+'">'+area+'</map>' ); 
 		
 		}
 

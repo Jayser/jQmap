@@ -36,6 +36,8 @@
 			jQmap.$formaTarget 		= $('#popup-target');  		 	// checkbox
 			jQmap.$formaToHTML 		= $('#popup-to_html'); 		 	// textarea 
 
+
+			jQmap.$formaStyle  		= $('.b-form-style'); 	    	// forma style
 			jQmap.$formaArea  		= $('.b-form-style.area'); 	    // forma create
 			jQmap.$formaHTML  		= $('.b-form-style.to-html');   // forma generate html
 
@@ -107,7 +109,7 @@
 				jQpup +=		'<div class="jQpup-close '+ close +'">X</div>';
 				jQpup +=		'<div class="b-form-style area">';
 				jQpup +=			'<div class="offset-bottom_10">';
-				jQpup +=				'<input type="text" id="popup-URL" autofocus placeholder="Введите URL" class="'+ formaStyle +' forma-el-width_2">';
+				jQpup +=				'<input type="text" id="popup-URL" data-autofocus="autofocus" placeholder="Введите URL" class="'+ formaStyle +' forma-el-width_2">';
 				jQpup +=				'<div class="forma-example offset-top_3 offset-left_5">Пример: http://your-site-url.com</div>';
 				jQpup +=			'</div>';
 				jQpup +=			'<div class="offset-bottom_15 offset-left_5">';
@@ -124,7 +126,7 @@
 				jQpup +=		'</div>';
 				jQpup +=		'<div class="b-form-style to-html">';
 				jQpup +=			'<div class="offset-bottom_15">';
-				jQpup +=				'<textarea id="popup-to_html" autofocus class="'+ formaStyle +'"></textarea>';
+				jQpup +=				'<textarea id="popup-to_html" data-autofocus="autofocus" class="'+ formaStyle +'"></textarea>';
 				jQpup +=			'</div>';
 				jQpup +=			'<div class="text-right">';
 				jQpup +=				'<button class="popup-cancel '+ button +' silver small '+ close +'">Отмена</button>';
@@ -272,6 +274,27 @@
 			$self.css({ 'margin-top' : 0, 'margin-left' : 0 });
 			$self.css({ 'margin-top' : '-' + parseInt( $self.outerHeight( true ) / 2 ) + 'px' });
 			$self.css({ 'margin-left': '-' + parseInt( $self.outerWidth( true  ) / 2 ) + 'px' });
+
+			// Add autofocus to tag with attribute autofocus
+			var $focus = jQmap.$formaStyle.filter(':visible').find('[data-autofocus]');
+
+			if( $focus.attr('id') === 'popup-to_html' ){
+
+				$focus.focus(function(){
+
+					var $this = $(this);
+				    $this.select();
+
+				    $this.mouseup(function() {
+				        $this.unbind("mouseup");
+				        return false;
+				    });
+
+				});
+				
+			} else {
+				$focus.focus();
+			}
 
 			$(window).resize(function(){
 				
@@ -511,28 +534,14 @@
 					mapID = 'jQmap-map_'+jQmap.getRandomInt( 0, 100000 ),
 					area  = '';
 
-			// Show PopUp
-			jQmap.PopUpShow();
-
 			// Hide form for create area in PopUp
 			jQmap.$formaArea.hide();
 
 			// Show form generate HTML 
 			jQmap.$formaHTML.show();
 
-			// Select text in textarea
-			jQmap.$formaToHTML.focus(function(){
-
-				var $this = $(this);
-    			$this.select();
-
-				$this.mouseup(function() {
-			        // Prevent further mouseup intervention
-			        $this.unbind("mouseup");
-			        return false;
-			    });
-
-			});
+			// Show PopUp
+			jQmap.PopUpShow();
 
 			// Generate HTML
 			for ( i; i < ln; i++ ){

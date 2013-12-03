@@ -73,9 +73,11 @@
 				tools +=	'</div>';
 
 				// Download IMG
+
 				tools += 	'<div class="'   + bClass + '" id="t-downloadIMG">';
 				tools +=		'<i class="' + iClass + 'plus"></i>';
 				tools += 		'<br>Загрузить<br>изображение';
+				tools += 		'<input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>';
 				tools +=	'</div>';
 
 				// Generate HTML
@@ -99,60 +101,64 @@
 		// Generate HTML PopUp & append
 		PopUp: function(){
 
-			var close 		= 'attr-popup-close',
-				button  	= 'form-button',
-				offset  	= 'small offset-left_5',
-				formaStyle  = 'forma-style';
+			if( $('.jQpup-overview').length === 0 ){
 
-				jQpup = '<div class="jQpup-overview">';
-				jQpup +=	'<div class="jQpup">';
-				jQpup +=		'<div class="jQpup-close '+ close +'">X</div>';
-				jQpup +=		'<div class="b-form-style area">';
-				jQpup +=			'<div class="offset-bottom_10">';
-				jQpup +=				'<input type="text" id="popup-URL" data-autofocus="autofocus" placeholder="Введите URL" class="'+ formaStyle +' forma-el-width_2">';
-				jQpup +=				'<div class="forma-example offset-top_3 offset-left_5">Пример: http://your-site-url.com</div>';
-				jQpup +=			'</div>';
-				jQpup +=			'<div class="offset-bottom_15 offset-left_5">';
-				jQpup +=				'<label class="checkbox-lable">';
-				jQpup +=					'<input type="checkbox" id="popup-target" class="'+ formaStyle +'"> Open in new window ?';
-				jQpup +=				'</label>';
-				jQpup +=			'</div>';
-				jQpup +=			'<div class="text-right">';
-				jQpup +=				'<button class="popup-cancel '+ button +' silver small '+ close +'">Отмена</button>';
-				jQpup +=				'<button id="popup-create" class="'+ button +' orange '+ close + ' ' + offset +'">Создать область</button>';
-				jQpup +=				'<button id="popup-delete" class="'+ button +' silver '+ close + ' ' + offset +'">Удалить</button>';
-				jQpup +=				'<button id="popup-save" class="'+ button +' orange '+ close + ' ' + offset +'">Сохранить</button>';
-				jQpup +=			'</div>';
-				jQpup +=		'</div>';
-				jQpup +=		'<div class="b-form-style to-html">';
-				jQpup +=			'<div class="offset-bottom_15">';
-				jQpup +=				'<textarea id="popup-to_html" data-autofocus="autofocus" class="'+ formaStyle +'"></textarea>';
-				jQpup +=			'</div>';
-				jQpup +=			'<div class="text-right">';
-				jQpup +=				'<button class="popup-cancel '+ button +' silver small '+ close +'">Отмена</button>';
-				jQpup +=			'</div>';
-				jQpup +=		'</div>';
-				jQpup +=	'</div>';
-				jQpup +='</div>';
+				var close 		= 'attr-popup-close',
+					button  	= 'form-button',
+					offset  	= 'small offset-left_5',
+					formaStyle  = 'forma-style';
 
-			$('body').append( jQpup );
+					jQpup = '<div class="jQpup-overview">';
+					jQpup +=	'<div class="jQpup">';
+					jQpup +=		'<div class="jQpup-close '+ close +'">X</div>';
+					jQpup +=		'<div class="b-form-style area">';
+					jQpup +=			'<div class="offset-bottom_10">';
+					jQpup +=				'<input type="text" id="popup-URL" data-autofocus="autofocus" placeholder="Введите URL" class="'+ formaStyle +' forma-el-width_2">';
+					jQpup +=				'<div class="forma-example offset-top_3 offset-left_5">Пример: http://your-site-url.com</div>';
+					jQpup +=			'</div>';
+					jQpup +=			'<div class="offset-bottom_15 offset-left_5">';
+					jQpup +=				'<label class="checkbox-lable">';
+					jQpup +=					'<input type="checkbox" id="popup-target" class="'+ formaStyle +'"> Open in new window ?';
+					jQpup +=				'</label>';
+					jQpup +=			'</div>';
+					jQpup +=			'<div class="text-right">';
+					jQpup +=				'<button class="popup-cancel '+ button +' silver small '+ close +'">Отмена</button>';
+					jQpup +=				'<button id="popup-create" class="'+ button +' orange '+ close + ' ' + offset +'">Создать область</button>';
+					jQpup +=				'<button id="popup-delete" class="'+ button +' silver '+ close + ' ' + offset +'">Удалить</button>';
+					jQpup +=				'<button id="popup-save" class="'+ button +' orange '+ close + ' ' + offset +'">Сохранить</button>';
+					jQpup +=			'</div>';
+					jQpup +=		'</div>';
+					jQpup +=		'<div class="b-form-style to-html">';
+					jQpup +=			'<div class="offset-bottom_15">';
+					jQpup +=				'<textarea id="popup-to_html" data-autofocus="autofocus" class="'+ formaStyle +'"></textarea>';
+					jQpup +=			'</div>';
+					jQpup +=			'<div class="text-right">';
+					jQpup +=				'<button class="popup-cancel '+ button +' silver small '+ close +'">Отмена</button>';
+					jQpup +=			'</div>';
+					jQpup +=		'</div>';
+					jQpup +=	'</div>';
+					jQpup +='</div>';
+
+				$('body').append( jQpup );
+
+			}
 
 		},
-
+		
 		// initialize
 		Init: function () {
 
 			// Append tools 
 			jQmap.Tools();
 
+			// File upload
+			jQmap.Upload();
+
 			// Prepend PopUp
 			jQmap.PopUp();
 
 			// Elements save
 			jQmap.$el();
-
-			// Autoresize jQmap
-			jQmap.Autoresize();
 
 			// Add events
 			jQmap.Events();
@@ -174,7 +180,7 @@
 		Events: function () {
 
 			// @Tools: Open PopUp for create area || revert map data 
-			jQmap.$tCreateMap.click(function(){ 
+			jQmap.$tCreateMap.click(function(){
 				$('.imgareaselect-outer').is(':visible') ? jQmap.CheckEnable( 'revert' ) : jQmap.PopUpCreateMap();
 			});
 
@@ -362,7 +368,7 @@
 			// Disable map
 			jQmap.OffMap();
 
-			// console.log( jQmap.memory.coordinate );
+			console.log( jQmap.memory.coordinate );
 
 		},
 
@@ -425,7 +431,7 @@
 
 				$showcase.append( $map );
 
-				// console.log( cord );
+				console.log( cord );
 
 			}
 			jQmap.OffMap();
@@ -523,7 +529,34 @@
 			jQmap.$formaURL.val( fieldURL );
 			jQmap.$formaTarget.prop( 'checked', !!fieldTarget );
 
-		},		
+		},
+
+		Upload:function(){
+			$('#fileupload').fileupload({
+				dataType: 'json',
+			    add: function (e, data) {
+			        data.submit();
+
+			        var IMG = '<img src="server/php/files/';
+			        	IMG+= data.originalFiles[0].name+'"';
+			        	IMG+= ' alt="" class="jQmap-thumb" id="jQmap-thumb">';
+
+			        $('.jQmap-showcase').empty().append(IMG);
+			    },
+			    done: function (e, data) {
+
+			    	// Clear old data
+					if( jQmap.memory.map !== '' ){
+						jQmap.OffMap();
+						jQmap.memory.map = '';
+						jQmap.memory.coordinate = [];
+					}
+					jQmap.$el();
+			    	jQmap.Autoresize();
+			    	
+			    }
+			});
+		},
 
 		// Generate HTML
 		ToHTML: function (){
